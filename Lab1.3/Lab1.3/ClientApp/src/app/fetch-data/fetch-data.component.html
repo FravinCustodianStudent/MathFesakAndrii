@@ -1,0 +1,45 @@
+
+<p *ngIf="!filmCumulativeFrequency"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="filmCumulativeFrequency">
+  <thead>
+    <tr>
+      <th>Views</th>
+      <th>Frequency</th>
+      <th> Cumulative frequency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let film of films">
+      <td>{{ film.views }}</td>
+      <td>{{ film.frequency }}</td>
+      <td>{{film.cumalativeFrequency}}</td>
+    </tr>
+  </tbody>
+</table>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="filmCumulativeFrequency">
+  <thead>
+  <tr>
+    <th>Mode</th>
+    <th>Deviation</th>
+    <th>Deviation</th>
+    <th>Median</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr >
+    <td>{{ mode }}</td>
+    <td>{{ dev  }}</td>
+    <td>{{ devSqrt  }}</td>
+    <td>{{ median  }}</td>
+  </tr>
+  </tbody>
+</table>
+<div style="width:100%;min-height:450px ">
+  <ngx-charts-bar-vertical class="chart-container ng-star-inserted" [results]="ss"
+                           [xAxis]=true
+                           [yAxis]=true
+                           [legend]=true
+  >
+    </ngx-charts-bar-vertical></div>
+
