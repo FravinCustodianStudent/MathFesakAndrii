@@ -12,6 +12,10 @@ public class WeatherForecastController : ControllerBase
     [HttpGet]
     public async Task<List<Film>> Index()
     {
+        using (StreamWriter writer = new StreamWriter("result.txt", false))
+        {
+            Film.WriteFilmsFrequency(await GetData(BaseFile),writer);
+        }
         return await GetData(BaseFile);
     }
     public async Task<List<Film>> GetData(string path)
