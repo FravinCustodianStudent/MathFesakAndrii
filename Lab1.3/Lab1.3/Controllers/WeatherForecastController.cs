@@ -8,15 +8,17 @@ namespace Lab1._3.Controllers;
 public class WeatherForecastController : ControllerBase
 {
     private string BasePath = "../Lab1.3/task_01_data/";
-    private string BaseFile = "input_10.txt";
+    private string BaseFile = "input_100.txt";
     [HttpGet]
     public async Task<List<Film>> Index()
     {
+        var data = await GetData(BaseFile);
+        data = data.OrderBy(a=>a.Views).ToList();
         using (StreamWriter writer = new StreamWriter("result.txt", false))
         {
-            Film.WriteFilmsFrequency(await GetData(BaseFile),writer);
+            Film.WriteFilmsFrequency(data,writer);
         }
-        return await GetData(BaseFile);
+        return data;
     }
     public async Task<List<Film>> GetData(string path)
     {
@@ -74,6 +76,7 @@ public class WeatherForecastController : ControllerBase
     public async Task<int> GetMedian()
     {
         var films = await GetData(BaseFile);
+        films = films.OrderBy(a=>a.Views).ToList();
         return films[Convert.ToInt32(films.Count / 2)].Views;
     }
     [HttpGet("mode")]

@@ -6,7 +6,7 @@ import {deviation} from "d3";
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html'
 })
-export class FetchDataComponent {
+export class FetchDataComponent{
   public films: Film[] = [];
   public filmCumulativeFrequency: number[] = [];
   public filmsCharts:any[] = [];
@@ -36,7 +36,7 @@ export class FetchDataComponent {
     }, error => console.error(error));
     http.get<number>(baseUrl+'weatherforecast/deviation').subscribe(result => {
       this.dev = result;
-      this.devSqrt = Math.sqrt(this.dev);
+      this.devSqrt =Math.round(Math.sqrt(this.dev) * 100) / 100 ;
 
     }, error => console.error(error));
     http.get<number>(baseUrl+'weatherforecast/mode').subscribe(result => {
@@ -44,6 +44,7 @@ export class FetchDataComponent {
     }, error => console.error(error));
     http.get<number>(baseUrl+'weatherforecast/med').subscribe(result => {
       this.median = result;
+      console.log(this.ss);
     }, error => console.error(error));
   }
 }
