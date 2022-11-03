@@ -1,0 +1,4 @@
+Center of weight is G:(3.892;35.0)
+Covariation is 23.0
+Reggression l ine is y =9.953x + -3.735
+Corelation 0.901
